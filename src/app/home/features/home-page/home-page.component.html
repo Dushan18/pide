@@ -1,0 +1,76 @@
+<nav class="bg-white border-gray-200 dark:bg-[#4054b4]">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <a href="" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <img src="https://www.practicas.pe/organizaciones/practicas-egemsa.png" class="h-8" alt="Logo" />
+        </a>
+
+        <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+            <button type="button"
+                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                Get started
+            </button>
+            <button data-collapse-toggle="navbar-cta" type="button"
+                class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white rounded-lg md:hidden hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-white"
+                aria-controls="navbar-cta" aria-expanded="false">
+                <span class="sr-only">Open main menu</span>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+
+        <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-cta">
+            <ul
+                class="flex flex-col font-medium p-4 md:p-0 mt-4 border rounded-lg md:space-x-4 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
+                <li>
+                    <a href="#"
+                        class="block py-2 px-3 rounded-md text-white hover:bg-white/20 focus:bg-white/30 transition-all"
+                        aria-current="page">Home</a>
+                </li>
+                <li>
+                    <a href="#"
+                        class="block py-2 px-3 rounded-md text-white hover:bg-white/20 focus:bg-white/30 transition-all">About</a>
+                </li>
+                <li>
+                    <a href="#"
+                        class="block py-2 px-3 rounded-md text-white hover:bg-white/20 focus:bg-white/30 transition-all">Services</a>
+                </li>
+                <li>
+                    <a href="#"
+                        class="block py-2 px-3 rounded-md text-white hover:bg-white/20 focus:bg-white/30 transition-all">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="max-w-xl mx-auto mt-10 bg-white dark:bg-gray-800 p-6 rounded shadow">
+    <h2 class="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Consulta RENIEC</h2>
+
+    <form (ngSubmit)="consultar()" #consultaForm="ngForm">
+        <div class="mb-4">
+            <label class="block mb-1 text-sm font-medium text-gray-700 dark:text-white">DNI Usuario</label>
+            <input type="text" name="nuDniUsuario" [(ngModel)]="form.nuDniUsuario" required
+                class="w-full px-3 py-2 border rounded text-gray-800 dark:bg-gray-700 dark:text-white" />
+        </div>
+
+        <div class="mb-4">
+            <label class="block mb-1 text-sm font-medium text-gray-700 dark:text-white">DNI a Consultar</label>
+            <input type="text" name="nuDniConsulta" [(ngModel)]="form.nuDniConsulta" required
+                class="w-full px-3 py-2 border rounded text-gray-800 dark:bg-gray-700 dark:text-white" />
+        </div>
+
+        <button type="submit"
+            class="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-800 transition">Consultar</button>
+    </form>
+
+    <div *ngIf="resultado" class="mt-6 text-sm text-white">
+        <h3 class="font-bold text-lg mb-2">Resultado:</h3>
+        <p><strong>Nombres:</strong> {{ resultado?.return?.datosPersona?.prenombres }}</p>
+        <p><strong>Apellido Paterno:</strong> {{ resultado?.return?.datosPersona?.apPrimer }}</p>
+        <p><strong>Apellido Materno:</strong> {{ resultado?.return?.datosPersona?.apSegundo }}</p>
+        <p><strong>Dirección:</strong> {{ resultado?.return?.datosPersona?.direccion }}</p>
+        <p><strong>Ubigeo:</strong> {{ resultado?.return?.datosPersona?.ubigeo }}</p>
+        <p><strong>Estado Civil:</strong> {{ resultado?.return?.datosPersona?.estadoCivil }}</p>
+    </div>
+</div>
